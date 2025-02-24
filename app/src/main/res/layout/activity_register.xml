@@ -81,7 +81,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/register_submit"
         android:layout_width="230dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="232dp"
@@ -93,14 +93,15 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
+        android:id="@+id/register_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:layout_marginBottom="192dp"
+        android:layout_marginBottom="212dp"
         android:text="Already have an account?Log-in"
-        android:textSize="17sp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="@+id/register_submit"
+        app:layout_constraintStart_toStartOf="@+id/register_submit" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
