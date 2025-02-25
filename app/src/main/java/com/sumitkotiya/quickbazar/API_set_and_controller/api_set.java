@@ -1,5 +1,6 @@
 package com.sumitkotiya.quickbazar.API_set_and_controller;
 
+import com.sumitkotiya.quickbazar.models.LoginResponseModel;
 import com.sumitkotiya.quickbazar.models.SignupResponseModel;
 
 import retrofit2.Call;
@@ -17,5 +18,12 @@ public interface api_set {
             @Field("password") String password,
             @Field("mobile") String mobile,
             @Field("address") String address
+    );
+
+    @FormUrlEncoded
+    @POST("login.php")
+    Call<LoginResponseModel> checkLogin(
+            @Field("email") String email,
+            @Field("password") String password
     );
 }
