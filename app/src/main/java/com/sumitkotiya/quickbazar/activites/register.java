@@ -1,9 +1,11 @@
 package com.sumitkotiya.quickbazar.activites;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,7 +13,13 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.sumitkotiya.quickbazar.API_set_and_controller.Api_controller;
 import com.sumitkotiya.quickbazar.R;
+import com.sumitkotiya.quickbazar.models.SignupResponseModel;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class register extends AppCompatActivity {
 
@@ -43,10 +51,10 @@ public class register extends AppCompatActivity {
         *
         */
 
-        String user_email,user_password,user_mobile;
-        user_email = reg_email.getText().toString();
-        user_password = reg_password.getText().toString();
-        user_mobile = reg_mobile.getText().toString();
+
+
+
+
 
         /*
         *
@@ -59,6 +67,10 @@ public class register extends AppCompatActivity {
         reg_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String user_email,user_password,user_mobile;
+                user_email = reg_email.getText().toString().trim();
+                user_password = reg_password.getText().toString().trim();
+                user_mobile = reg_mobile.getText().toString().trim();
                 user_register(user_email,user_mobile,user_password);
             }
         });
@@ -68,5 +80,40 @@ public class register extends AppCompatActivity {
     public void user_register(String email, String mobile, String password){
         String name = "NOT PROVIDED";
         String address = "NOT PROVIDED";
+
+        //api ko call
+        Call<SignupResponseModel> call = Api_controller.getInstance().getApi().getRegistered(name,email,password,mobile,address);
+
+        //call ko retrofit queue mai lagata hai
+        call.enqueue(new Callback<SignupResponseModel>() {
+            @Override
+            public void onResponse(Call<SignupResponseModel> call, Response<SignupResponseModel> response) {
+                //yaha response ayaga
+                SignupResponseModel obj = response.body();
+                String result = obj.getMessage().trim();
+
+                if(result.equals("inserted")){
+                    Toast.makeText(register.this, "Acount created successfully", Toast.LENGTH_SHORT).show();
+                    Log.i("TAG", email+password+mobile); // Info log
+                    reg_email.setText("");
+                    reg_mobile.setText("");
+                    reg_password.setText("");
+                }
+                if(result.equals("exist")){
+                    Toast.makeText(register.this, "Email already registered", Toast.LENGTH_SHORT).show();
+                    reg_email.setText("");
+                    reg_mobile.setText("");
+                    reg_password.setText("");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<SignupResponseModel> call, Throwable throwable) {
+                Toast.makeText(register.this, "Something went wrong", Toast.LENGTH_SHORT).show();
+                reg_email.setText("");
+                reg_mobile.setText("");
+                reg_password.setText("");
+            }
+        });
     }
 }
