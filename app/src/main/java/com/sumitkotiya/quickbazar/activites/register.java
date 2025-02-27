@@ -94,7 +94,6 @@ public class register extends AppCompatActivity {
 
                 if(result.equals("inserted")){
                     Toast.makeText(register.this, "Acount created successfully", Toast.LENGTH_SHORT).show();
-                    Log.i("TAG", email+password+mobile); // Info log
                     reg_email.setText("");
                     reg_mobile.setText("");
                     reg_password.setText("");
