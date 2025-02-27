@@ -16,6 +16,10 @@
             android:name=".activites.register"
             android:exported="false" />
         <activity
+            android:name=".activites.Activity_signup"
+            android:exported="false"/>
+
+        <activity
             android:name=".activites.productDetailActivity"
             android:exported="false" />
         <activity
