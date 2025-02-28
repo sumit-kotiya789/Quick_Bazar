@@ -57,10 +57,10 @@ public class dashboard extends AppCompatActivity {
                         Toast.makeText(dashboard.this, "You clicked logout", Toast.LENGTH_SHORT).show();
                         drawerLayout.closeDrawer(GravityCompat.START);
                         return true;
-                    } else if (id == R.id.nav_setting) {
-                        Toast.makeText(dashboard.this, "You clicked setting", Toast.LENGTH_SHORT).show();
+                    } else if (id == R.id.myCart) {
+                        Toast.makeText(dashboard.this, "You clicked my cart", Toast.LENGTH_SHORT).show();
                         drawerLayout.closeDrawer(GravityCompat.START);
-                    }else if (id == R.id.nav_account) {
+                    }else if (id == R.id.myAccount) {
                         Toast.makeText(dashboard.this, "You clicked my account", Toast.LENGTH_SHORT).show();
                         drawerLayout.closeDrawer(GravityCompat.START);
                     }

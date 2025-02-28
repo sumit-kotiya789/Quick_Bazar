@@ -13,6 +13,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.material.textfield.TextInputEditText;
 import com.sumitkotiya.quickbazar.API_set_and_controller.Api_controller;
 import com.sumitkotiya.quickbazar.R;
 import com.sumitkotiya.quickbazar.models.SignupResponseModel;
@@ -23,7 +24,7 @@ import retrofit2.Response;
 
 public class register extends AppCompatActivity {
 
-    EditText reg_email,reg_mobile,reg_password;
+    TextInputEditText reg_email,reg_mobile,reg_password;
     Button reg_submit;
 
     @Override
