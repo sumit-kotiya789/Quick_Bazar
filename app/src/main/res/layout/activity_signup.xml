@@ -5,14 +5,14 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bgls"
+    android:background="#25282C"
     tools:context=".activites.Activity_signup">
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="96dp"
         android:text="Quick Bazar"
         android:textColor="#FF6D00"
         android:textSize="55sp"
@@ -51,10 +51,10 @@
         app:layout_constraintTop_toBottomOf="@+id/signup_title">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/nameEditText"
+            android:id="@+id/register_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter Name"
+            android:hint="Email"
             android:inputType="textPersonName"
             android:padding="12dp" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -73,11 +73,11 @@
         app:layout_constraintTop_toBottomOf="@+id/nameInputLayout">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/emailEditText"
+            android:id="@+id/register_mobile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter Email"
-            android:inputType="textEmailAddress"
+            android:hint="Enter Number"
+            android:inputType="phone"
             android:padding="12dp" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -96,7 +96,7 @@
         app:passwordToggleEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/passwordEditText"
+            android:id="@+id/register_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Enter Password"
@@ -105,10 +105,10 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/signup_btn"
+        android:id="@+id/register_submit"
         android:layout_width="280dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="28dp"
         android:backgroundTint="#FF6D00"
         android:text="Sign Up"
         android:textColorLink="#FF6D00"
@@ -119,15 +119,15 @@
         app:layout_constraintTop_toBottomOf="@+id/passwordInputLayout" />
 
     <TextView
-        android:id="@+id/signup_login"
+        android:id="@+id/register_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Already have an account? Login"
-        android:textColor="#004ADC"
+        android:textColor="#F0F4FB"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signup_btn" />
+        app:layout_constraintTop_toBottomOf="@+id/register_submit" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
