@@ -2,4 +2,23 @@
     <string name="app_name">Quick Bazar</string>
     <string name="nav_open">Open</string>
     <string name="nav_close">Close</string>
+
+    <!-- Authentication Titles -->
+    <string name="register_title">Register</string>
+    <string name="login_title">Login</string>
+
+    <!-- Input Hints -->
+    <string name="hint_name">Enter Name</string>
+    <string name="hint_email">Enter Email</string>
+    <string name="hint_phone">Enter Mobile Number</string>
+    <string name="hint_password">Enter Password</string>
+
+    <!-- Button Texts -->
+    <string name="register_button">Register</string>
+    <string name="login_button">Login</string>
+
+    <!-- Miscellaneous -->
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="already_have_account">Already have an account? Login</string>
+    <string name="dont_have_account">Don\'t have an account? Register</string>
 </resources>
