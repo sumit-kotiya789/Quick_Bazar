@@ -14,9 +14,15 @@ import androidx.core.view.GravityCompat;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.denzcoskun.imageslider.ImageSlider;
+import com.denzcoskun.imageslider.constants.ScaleTypes;
+import com.denzcoskun.imageslider.models.SlideModel;
 import com.google.android.material.navigation.NavigationView;
 import com.sumitkotiya.quickbazar.R;
+
+import java.util.ArrayList;
 
 
 public class dashboard extends AppCompatActivity {
@@ -24,6 +30,8 @@ public class dashboard extends AppCompatActivity {
     public DrawerLayout drawerLayout;
     public ActionBarDrawerToggle actionBarDrawerToggle;
     public NavigationView navigationView;
+
+    RecyclerView cat_recycler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,12 +43,27 @@ public class dashboard extends AppCompatActivity {
                     v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
                     return insets;
         });
+
+
+        //Toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
 
-            navigationView = findViewById(R.id.dash_nav);
-            drawerLayout = findViewById(R.id.dash_drawer);
+        //declaration
+        cat_recycler = findViewById(R.id.cat_recycler);
+        navigationView = findViewById(R.id.dash_nav);
+        drawerLayout = findViewById(R.id.dash_drawer);
+
+
+        //Slider
+        sliderSetup();
+
+
+
+
+
+
             actionBarDrawerToggle =new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.nav_open,R.string.nav_close);
 
             drawerLayout.addDrawerListener(actionBarDrawerToggle);
@@ -68,6 +91,25 @@ public class dashboard extends AppCompatActivity {
                 }
             });
 
+    }
+
+
+
+
+    public void sliderSetup(){
+        // Create image list
+        ArrayList<SlideModel> imageList = new ArrayList<>();
+
+        // Add images to the list
+        imageList.add(new SlideModel(R.drawable.one, "The animal population decreased by 58 percent in 42 years.", ScaleTypes.CENTER_CROP));
+        imageList.add(new SlideModel(R.drawable.two, "Elephants and tigers may become extinct.", ScaleTypes.CENTER_CROP));
+        imageList.add(new SlideModel(R.drawable.three, "And people do that.", ScaleTypes.CENTER_CROP));
+
+        // Find ImageSlider by ID
+        ImageSlider imageSlider = findViewById(R.id.image_slider);
+
+        // Set Image List
+        imageSlider.setImageList(imageList);
     }
 
 

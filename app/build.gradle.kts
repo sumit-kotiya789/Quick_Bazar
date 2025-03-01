@@ -44,4 +44,12 @@ dependencies {
     implementation(group="com.squareup.retrofit2",name="retrofit", version = "2.11.0")
     implementation(group="com.squareup.retrofit2",name="converter-gson", version = "2.11.0")
     implementation(group="com.google.android.material",name="material", version = "1.12.0")
+
+    val room_version = "2.6.1"
+
+    implementation("androidx.room:room-runtime:$room_version")
+    annotationProcessor("androidx.room:room-compiler:$room_version")
+    implementation("com.github.denzcoskun","ImageSlideshow","0.1.2")
+
+
 }

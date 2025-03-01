@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         *
         * */
 
-//        verifyLogin();
+        verifyLogin();
 
         login_loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
