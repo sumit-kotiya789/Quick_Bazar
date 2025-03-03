@@ -1,41 +1,33 @@
 package com.sumitkotiya.quickbazar.activites;
 
-import android.media.browse.MediaBrowser;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
-import android.widget.VideoView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.FileProvider;
 import androidx.core.graphics.Insets;
 import androidx.core.view.GravityCompat;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.models.SlideModel;
-import com.google.android.exoplayer2.MediaItem;
-import com.google.android.exoplayer2.SimpleExoPlayer;
-import com.google.android.exoplayer2.ui.PlayerView;
 import com.google.android.material.navigation.NavigationView;
 import com.sumitkotiya.quickbazar.API_set_and_controller.Api_controller;
 import com.sumitkotiya.quickbazar.R;
 import com.sumitkotiya.quickbazar.adapters.CategoryAdapter;
+import com.sumitkotiya.quickbazar.adapters.DealsAdapter;
 import com.sumitkotiya.quickbazar.models.CategoryResponseModel;
-import com.sumitkotiya.quickbazar.models.LoginResponseModel;
+import com.sumitkotiya.quickbazar.models.DealsResponseModel;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,7 +42,7 @@ public class dashboard extends AppCompatActivity {
     public ActionBarDrawerToggle actionBarDrawerToggle;
     public NavigationView navigationView;
 
-    RecyclerView cat_recycler;
+    RecyclerView cat_recycler,deal_recycler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +63,7 @@ public class dashboard extends AppCompatActivity {
 
         //declaration
         cat_recycler = findViewById(R.id.cat_recycler);
+        deal_recycler = findViewById(R.id.deal_recycler);
         navigationView = findViewById(R.id.dash_nav);
         drawerLayout = findViewById(R.id.dash_drawer);
 
@@ -80,6 +73,10 @@ public class dashboard extends AppCompatActivity {
 
         //process_cat_data
         process_cat_data();
+
+
+        //process deals
+        process_deals_data();
 
 
 
@@ -166,7 +163,7 @@ public class dashboard extends AppCompatActivity {
         cat_recycler.setHasFixedSize(true);
         cat_recycler.setNestedScrollingEnabled(true);
 
-        Call<List<CategoryResponseModel>> call = Api_controller.getInstance().getApi().getData();
+        Call<List<CategoryResponseModel>> call = Api_controller.getInstance().getApi().getCategoryData();
         call.enqueue(new Callback<List<CategoryResponseModel>>() {
             @Override
             public void onResponse(Call<List<CategoryResponseModel>> call, Response<List<CategoryResponseModel>> response) {
@@ -182,6 +179,29 @@ public class dashboard extends AppCompatActivity {
         });
     }
 
+
+    public void process_deals_data(){
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false);
+        deal_recycler.setLayoutManager(gridLayoutManager);
+        deal_recycler.setHasFixedSize(true);
+        deal_recycler.setNestedScrollingEnabled(false); // Disable scrolling
+
+
+        Call<List<DealsResponseModel>> call = Api_controller.getInstance().getApi().getDealsData();
+        call.enqueue(new Callback<List<DealsResponseModel>>() {
+            @Override
+            public void onResponse(Call<List<DealsResponseModel>> call, Response<List<DealsResponseModel>> response) {
+                List<DealsResponseModel> data = response.body();
+                DealsAdapter dealsAdapter = new DealsAdapter(data);
+                deal_recycler.setAdapter(dealsAdapter);
+            }
+
+            @Override
+            public void onFailure(Call<List<DealsResponseModel>> call, Throwable throwable) {
+                Toast.makeText(dashboard.this, throwable.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+    }
 
 
 }

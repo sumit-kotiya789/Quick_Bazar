@@ -11,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.sumitkotiya.quickbazar.R;
 import com.sumitkotiya.quickbazar.models.CategoryResponseModel;
 
@@ -27,7 +26,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cat_grid_layout,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cat_layout,parent,false);
         return new ViewHolder(view);
     }
 
@@ -42,7 +41,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
 //                .error(R.drawable.holder)
 //                .into(holder.cat_icon);
 
-        Glide.with(holder.cat_icon.getContext()).load("http://10.0.2.2/ecommapi/admin/images/"+dataList.get(position).getCat_img()).into(holder.cat_icon);//");
+        Glide.with(holder.cat_icon.getContext()).load("http://10.0.2.2/ecommapi/admin/images/"+dataList.get(position).getCat_img()).into(holder.cat_icon);
     }
 
     @Override

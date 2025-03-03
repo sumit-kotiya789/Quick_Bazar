@@ -1,6 +1,7 @@
 package com.sumitkotiya.quickbazar.API_set_and_controller;
 
 import com.sumitkotiya.quickbazar.models.CategoryResponseModel;
+import com.sumitkotiya.quickbazar.models.DealsResponseModel;
 import com.sumitkotiya.quickbazar.models.LoginResponseModel;
 import com.sumitkotiya.quickbazar.models.SignupResponseModel;
 
@@ -33,5 +34,8 @@ public interface api_set {
 
 
     @GET("category.php")
-    Call<List<CategoryResponseModel>> getData();
+    Call<List<CategoryResponseModel>> getCategoryData();
+
+    @GET("deals.php")
+    Call<List<DealsResponseModel>> getDealsData();
 }
