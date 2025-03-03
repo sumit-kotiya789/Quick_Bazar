@@ -1,28 +1,47 @@
 package com.sumitkotiya.quickbazar.activites;
 
+import android.media.browse.MediaBrowser;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.FileProvider;
 import androidx.core.graphics.Insets;
 import androidx.core.view.GravityCompat;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.models.SlideModel;
+import com.google.android.exoplayer2.MediaItem;
+import com.google.android.exoplayer2.SimpleExoPlayer;
+import com.google.android.exoplayer2.ui.PlayerView;
 import com.google.android.material.navigation.NavigationView;
+import com.sumitkotiya.quickbazar.API_set_and_controller.Api_controller;
 import com.sumitkotiya.quickbazar.R;
+import com.sumitkotiya.quickbazar.adapters.CategoryAdapter;
+import com.sumitkotiya.quickbazar.models.CategoryResponseModel;
+import com.sumitkotiya.quickbazar.models.LoginResponseModel;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class dashboard extends AppCompatActivity {
@@ -58,6 +77,24 @@ public class dashboard extends AppCompatActivity {
 
         //Slider
         sliderSetup();
+
+        //process_cat_data
+        process_cat_data();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        ////1@@@@@@@@@@@@@@@@@@@@@@@
 
 
 
@@ -111,9 +148,6 @@ public class dashboard extends AppCompatActivity {
         // Set Image List
         imageSlider.setImageList(imageList);
     }
-
-
-
     //Slide in and out
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -122,6 +156,32 @@ public class dashboard extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+
+    //category process
+    public void process_cat_data(){
+        //
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 1, GridLayoutManager.HORIZONTAL, false);
+        cat_recycler.setLayoutManager(gridLayoutManager);
+        cat_recycler.setHasFixedSize(true);
+        cat_recycler.setNestedScrollingEnabled(true);
+
+        Call<List<CategoryResponseModel>> call = Api_controller.getInstance().getApi().getData();
+        call.enqueue(new Callback<List<CategoryResponseModel>>() {
+            @Override
+            public void onResponse(Call<List<CategoryResponseModel>> call, Response<List<CategoryResponseModel>> response) {
+                List<CategoryResponseModel> data = response.body();
+                CategoryAdapter categoryAdapter = new CategoryAdapter(data);
+                cat_recycler.setAdapter(categoryAdapter);
+            }
+
+            @Override
+            public void onFailure(Call<List<CategoryResponseModel>> call, Throwable throwable) {
+                Toast.makeText(dashboard.this, throwable.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
 
 
 }
