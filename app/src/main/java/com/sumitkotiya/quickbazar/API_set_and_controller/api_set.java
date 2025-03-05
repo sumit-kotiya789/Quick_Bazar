@@ -1,11 +1,16 @@
 package com.sumitkotiya.quickbazar.API_set_and_controller;
 
+import com.sumitkotiya.quickbazar.models.CategoryResponseModel;
+import com.sumitkotiya.quickbazar.models.DealsResponseModel;
 import com.sumitkotiya.quickbazar.models.LoginResponseModel;
 import com.sumitkotiya.quickbazar.models.SignupResponseModel;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 public interface api_set {
@@ -26,4 +31,11 @@ public interface api_set {
             @Field("email") String email,
             @Field("password") String password
     );
+
+
+    @GET("category.php")
+    Call<List<CategoryResponseModel>> getCategoryData();
+
+    @GET("deals.php")
+    Call<List<DealsResponseModel>> getDealsData();
 }
