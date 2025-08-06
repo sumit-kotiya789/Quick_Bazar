@@ -1,0 +1,14 @@
+{
+  "name": "SOLtoken",
+  "symbol": "SOLT",
+  "description": "SOLtoken is the utility token of SUMIT KOTIYA.",
+  "image": "https://raw.githubusercontent.com/sumit-kotiya789/Quick_Bazar/master/tokenImg.png",
+  "properties": {
+    "files": [
+      {
+        "uri": "https://raw.githubusercontent.com/sumit-kotiya789/Quick_Bazar/master/tokenImg.png",
+        "type": "image/png"
+      }
+    ]
+  }
+}
